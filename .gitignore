@@ -1,0 +1,5 @@
+/assets/*.xz
+/assets/*.gz
+/dist/
+/AwayTrace-test.exe
+/work/
