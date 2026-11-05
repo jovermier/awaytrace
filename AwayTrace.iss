@@ -1,5 +1,5 @@
 #define MyAppName "AwayTrace"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.0.1"
 
 [Setup]
 AppId={{F7CEEF54-1668-46BA-99C8-EE397A0E20C5}
