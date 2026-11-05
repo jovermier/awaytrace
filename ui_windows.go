@@ -160,6 +160,11 @@ func trayIcon(col color.RGBA) (*walk.Icon, error) {
 
 var onUIReady func(win.HWND)
 
+// Tray dialogs have no visible parent window. Walk shows a dialog's owner
+// during close, which is unsafe for the hidden tray-only main window.
+func openTraySettings(g *Guard) { settingsDialog(nil, g) }
+func openTrayAbout()            { aboutDialog(nil) }
+
 func runUI(g *Guard) error {
 	runtime.LockOSThread()
 	defer runtime.UnlockOSThread()
@@ -200,7 +205,7 @@ func runUI(g *Guard) error {
 		updater.mu.Lock()
 		updater.settingsOpen = true
 		updater.mu.Unlock()
-		settingsDialog(mw, g)
+		openTraySettings(g)
 		updater.mu.Lock()
 		updater.settingsOpen = false
 		updater.mu.Unlock()
@@ -216,7 +221,7 @@ func runUI(g *Guard) error {
 		updater.mu.Lock()
 		updater.settingsOpen = true
 		updater.mu.Unlock()
-		aboutDialog(mw)
+		openTrayAbout()
 		updater.mu.Lock()
 		updater.settingsOpen = false
 		updater.mu.Unlock()
