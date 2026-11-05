@@ -168,6 +168,9 @@ func openTrayAbout()            { aboutDialog(nil) }
 func runUI(g *Guard) error {
 	runtime.LockOSThread()
 	defer runtime.UnlockOSThread()
+	menuTheme := newTrayMenuTheme()
+	defer menuTheme.dispose()
+	menuTheme.refresh()
 	mw, err := walk.NewMainWindow()
 	if err != nil {
 		return err
@@ -238,6 +241,8 @@ func runUI(g *Guard) error {
 	ni.MouseDown().Attach(func(x, y int, b walk.MouseButton) {
 		if b == walk.LeftButton {
 			go g.toggle()
+		} else if b == walk.RightButton {
+			menuTheme.refresh()
 		}
 	})
 	hwnd := mw.Handle()

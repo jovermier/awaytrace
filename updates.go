@@ -18,7 +18,7 @@ import (
 	"time"
 )
 
-const appVersion = "v1.0.2"
+const appVersion = "v1.0.3"
 const latestReleaseURL = "https://api.github.com/repos/jovermier/awaytrace/releases/latest"
 const maxUpdateBytes = 150 * 1024 * 1024
 
